@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>My Cart</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="navbar.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <style>
+        body{
+            background-color: whitesmoke;
+        }
+
+        #container {
+            position: absolute;
+            top: 60px;
+            left: 30px;
+            width: 40%;
+            height: 30%;
+            background-color: yellow;
+            margin: 20px;
+            box-shadow: 5px 5px 5px grey;
+        }
+
+        #title {
+            padding: 10px;
+            font-size: 50px;
+            font-weight: 650;
+        }
+
+        .item {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            box-shadow: 5px 5px 5px grey;
+        }
+
+        .item img {
+            position: relative;
+            left: 10px;
+            top: 10px;
+            width: 25%;
+        }
+
+        .item #remove {
+            position: relative;
+            left: 300px;
+            top: 90px;
+        }
+
+        .item #name {
+            position: absolute;
+            left: 200px;
+            top: 30px;
+        }
+
+        .item #cost {
+            position: absolute;
+            left: 200px;
+            top: 60px;
+        }
+
+        .item #quantity {
+            position: absolute;
+            left: 200px;
+            top: 90px;
+        }
+
+        .item #quantity #q {
+            width: 30%;
+        }
+
+        #space {
+            position: relative;
+            height: 30%;
+        }
+
+        #price {
+            position: absolute;
+            top: 80px;
+            left: 900px;
+            width: 400px;
+            height: 200px;
+            padding: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.920);
+            border-radius: 7px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.720);
+        }
+
+        #order {
+            position: absolute;
+            top: 300px;
+            left: 900px;
+            width: 400px;
+            background-color: yellow;
+            padding: 10px;
+            border-radius: 7px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.720);
+        }
+
+        #order button {
+            position: relative;
+            left: 200px;
+            height: 50px;
+            width: 180px;
+            font-size: large;
+        }
+
+        #details .fields{
+            width: 80%;
+        }
+         
+    </style>
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script type="text/javascript">
+        function addLike(id) {
+            var str=sessionStorage.getItem('user_id');
+            alert(id);
+            location.href="addlike.php?id="+id+"&q="+str; 
+        }
+
+        // function loadEmail(id) {
+        //     xhttp = new XMLHttpRequest();
+        //     xhttp.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //     document.getElementById("email").value = this.responseText;
+        //     loadReceipt();
+        //     }
+        //     };
+        //     xhttp.open("GET", "getemail.php?q="+id, true);
+        //     xhttp.send();
+        // }
+
+        function loadCart() {
+            var xhttp,str=sessionStorage.getItem('user_id');
+            //document.getElementById("qq").value=Number(str);  
+            //loadEmail(str);
+            setUser();
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("container").innerHTML += this.responseText;
+            loadReceipt();
+            }
+            };
+            xhttp.open("GET", "getorder.php?q="+str, true);
+            xhttp.send();
+        }
+
+        function setUser() {
+            if (sessionStorage.getItem("user_id")==-1 || sessionStorage.getItem("user_id")===null) {
+                alert("Sign In To Your Account To Use Cart!!!");
+                location.href="LoginTemplate.html";
+                return;
+            }
+            //alert(sessionStorage.getItem("user_email"));
+            var ele=document.getElementById("user");
+            ele.innerHTML="<i class='fas fa-user-alt'></i>";
+            ele.href='#';
+        }
+
+        // function loadReceipt() {
+        //     var n=document.getElementById("q").value;
+        //     if (n<0)
+        //     document.getElementById("q").value=0;
+        //     $(document).ready(function() {
+        //             var tot_amt=0,i,it_nm="",cost,no,n,str,item,len;
+        //             var item=document.getElementsByClassName("item");
+        //             len=item.length;
+        //             //alert(len);
+        //             for (i=0;i<len;++i) {
+        //                 it_nm=item[i];
+        //                 //alert(it_nm);
+        //                 //alert();  
+        //                 cost=$(it_nm).children("div#cost").text();
+        //                 //alert(cost);
+        //                 cost=cost.substring(1);
+        //                 //alert(cost);
+        //                 cost=parseFloat(cost);
+        //                 //alert(cost);
+        //                 no=$(it_nm).children("div#quantity");
+        //                 n=no.children("input#q").val();
+        //                 //alert(n*cost);
+        //                 tot_amt+=cost*n;
+        //                 //alert(tot_amt);
+        //             }
+        //             //alert(tot_amt);
+        //             tot_amt=tot_amt.toFixed(2);
+        //             str=tot_amt.toString();
+        //             //alert(tot_amt);
+        //             document.getElementById("receipt").innerHTML="Cost : <span>&#8377;</span>"+str;
+        //             document.getElementById("pr").value=str;
+        //     });
+        // }
+
+        // function changeValue(id) {
+        //     var quantity,str=sessionStorage.getItem('user_id');
+        //     //alert(id);
+        //     quantity=document.getElementById("q").value;
+        //     location.href="changerecord.php?q="+str+"&id="+id+"&quantity="+quantity;
+        // }
+        
+        function dropdown() {
+			//alert();
+            //document.getElementById("drop-down-box").style.top="120px";
+            if (sessionStorage.getItem("user_id")==-1 || sessionStorage.getItem("user_id")===null)
+            return;
+		    if (document.getElementById("drop-down-box").style.visibility=="visible") {
+                document.getElementById("drop-down-box").style.visibility="hidden";
+            }
+            else
+                document.getElementById("drop-down-box").style.visibility="visible";
+		}
+    </script>
+
+</head>
+
+<body onload="loadCart()">
+
+    <nav id="menu">
+		<ul>
+            <li id="logo">AG Restuarant</li>
+            <li><a href="#">About</a></li>
+            <li><a href="Home.html">Home</a></li>
+			<li><a href="Menu2.html">Menu</a></li>
+			<li><a href="Reservation.html">Reservation</a></li>
+            <li><a href="#" id="default">My Orders</a></li>
+            <li style="float:right;"><a href="LoginTemplate.html" onclick="dropdown()" id="user">Sign In</a></li>
+		  </ul>				  
+    </nav>
+    
+    <div id="drop-down-box">
+        <ul>
+          <li><a href="Cart-Page.html">My Cart</a></li>
+          <li><a href="#">My Orders</a></li>
+          <li><a href="#">Give Suggestions</a></li>
+          <li><a href="LoginTemplate.html" onclick="signout()">Sign Out</a></li>
+        </ul>
+    </div>
+
+    <div id="container">
+        <span id="title">My Orders</span>
+
+        
+        <!--
+        <div id="item2" class="item">
+            <img src="Images/chocolate-mouse/chocolate-mousse_1.jpg">
+            <div id="name">Chocolate Mousse</div>
+            <div id="cost"><span>&#8377;</span>999.99</div>
+            <div id="quantity"><input type="number" name="quantity" id="q" value="1" onchange="loadReceipt()"></div>
+            <button id="remove" type="button" class="btn btn-warning" onclick="removeEle('item2')">Remove</button>
+        </div>
+        
+        <div id="item3" class="item">
+            <img src="Images/chocolate-mouse/chocolate-mousse_1.jpg">
+            <div id="name">Chocolate Mousse</div>
+            <div id="cost"><span>&#8377;</span>999.99</div>
+            <div id="quantity"><input type="number" name="quantity" id="q" value="1" onchange="loadReceipt()"></div>
+            <button id="remove" type="button" class="btn btn-warning" onclick="removeEle('item3')">Remove</button>
+        </div>
+        -->
+    </div>
+
+    <!--
+    <div id="price">
+        <h2>PRICE DETAILS</h2>
+        <div id="receipt"></div>
+    </div>
+
+    <div id="order">
+        <h2>BILLING DETAILS </h2>
+
+        <form id="details" action="placeorder.php" method="post">
+            <input type="number" name="q" id="qq" style="visibility: hidden;"> 
+            <input type="text" name="name" id="nm" class="fields" placeholder="Enter Receiver's Name"><br><br>
+            <input type="text" name="phno" id="phno" class="fields" placeholder="Enter Receiver's Phone Number"><br><br>
+            <input type="email" name="email" id="email" class="fields" placeholder="Enter Receiver's Email"><br><br>
+            <textarea placeholder="Enter Delivery Address" class="fields" name="addr"></textarea><br>
+            <button type="submit" class="btn btn-success">PLACE ORDER</button>
+            <input type="text" name="price" id="pr" style="visibility: hidden;">   
+        </form>
+
+        
+    </div>
+    -->
+
+</body>
+</html>

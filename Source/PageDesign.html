@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Design</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="navbar.css">
+	<script>
+		function dropdown() {
+			//alert();
+			document.getElementById("drop-down-box").style.visibility="visible";
+		}
+	</script>
+</head>
+<body>
+	<header id="head">
+		<h1 align="center">PAGE DESIGN</h1>
+	</header>
+	<nav id="menu">
+		<ul>
+			<li><a href="#home">Home</a></li>
+			<li><a href="#news">News</a></li>
+			<li><a href="#contact">Contact</a></li>
+			<li><a href="#about">About</a></li>
+			<li style="float:right;"><a href="#about" onclick="dropdown()">About</a></li>
+		  </ul>				  
+	</nav>
+	<div id="drop-down-box">
+		<ul>
+			<li><a>Hello World</a></li>
+			<li><a>Hello World</a></li>
+			<li><a>Hello World</a></li>
+			<li><a>Hello World</a></li>
+		</ul>
+	</div>
+</body>
+</html>

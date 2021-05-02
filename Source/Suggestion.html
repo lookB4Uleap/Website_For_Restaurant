@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="catalog_des.css">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    
+    <style type="text/css">
+        #menu-nav {
+            height: 40px;
+        }
+        
+        #menu-nav ul li a{
+            color: white;
+        }
+
+        #menu-nav ul li a:hover{
+            color: black;
+        }
+
+        .catalog {
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        function initialize() {
+            if (sessionStorage.getItem("user_id")===null) {
+                sessionStorage.setItem("user_id",-1);
+                sessionStorage.setItem('user_email',-1);
+            }
+            else 
+                setUser();
+        }
+
+        
+
+        function setUser() {
+            if (sessionStorage.getItem("user_id")==-1) {
+                return;
+            }
+            var ele=document.getElementById("user")
+            ele.innerHTML="<i class='fas fa-user-alt'></i>";
+            ele.href='#';
+        }
+
+        function dropdown() {
+			//alert();
+            if (sessionStorage.getItem("user_id")==-1)
+            return;
+            //document.getElementById("drop-down-box").style.top="120px";
+            //alert(document.getElementById("drop-down-box").style.visibility);
+            if (document.getElementById("drop-down-box").style.visibility=="visible") {
+            document.getElementById("drop-down-box").style.visibility="hidden";
+            }
+            else
+            document.getElementById("drop-down-box").style.visibility="visible";
+		}
+    </script>
+</head>
+<body onload="initialize()">
+
+	<nav id="menu">
+		<ul>
+            <li id="logo">AG Restuarant</li>
+            <li><a href="#">About</a></li>
+            <li><a href="Home.html">Home</a></li>
+			<li><a href="Menu2.html">Menu</a></li>
+			<li><a href="Reservation.html">Reservation</a></li>
+            <li style="float:right;"><a href="LoginTemplate.html" onclick="dropdown()" id="user">Sign In</a></li>
+		  </ul>				  
+	</nav>
+    
+    
+    
+    <div id="drop-down-box">
+      <ul>
+        <li><a href="Cart-Page.html">My Cart</a></li>
+        <li><a href="#">My Orders</a></li>
+        <li><a href="#">Give Suggestions</a></li>
+        <li><a href="LoginTemplate.html" onclick="signout()">Sign Out</a></li>
+      </ul>
+    </div>
+
+    <br>
+
+    <h2 align="center">Give Suggestions</h2>
+
+    <form action="savesug.php" method="post">
+        <table align="center">
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" id="email"></td>
+            </tr>
+            <tr>
+                <td>Suggestion</td>
+                <td><textarea name="sug" id="sug"></textarea></td>
+            </tr>
+            <tr><td><button type="submit">Submit</button></tr></tr>
+        </table>
+    </form>
+    
+</body>
+</html>

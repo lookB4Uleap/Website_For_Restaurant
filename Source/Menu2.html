@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="catalog_des.css">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        #menu-nav {
+            height: 40px;
+        }
+        
+        #menu-nav ul li a{
+            color: white;
+        }
+
+        #menu-nav ul li a:hover{
+            color: black;
+        }
+
+        .catalog {
+            visibility: hidden;
+        }
+    </style>
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="common.js"></script>
+    <script>
+        var prev = "start";
+        function loadUp(opt, ele) {
+            document.getElementById(prev).style.color="white";
+            document.getElementById("disp").innerHTML = "<br>"; 
+            loadMenu(opt);
+            prev = ele; 
+            document.getElementById(ele).style.color="black";
+        }
+
+        function call(item,price,item_nm) {
+            sessionStorage.setItem('item',item);
+            sessionStorage.setItem('price',price);
+            sessionStorage.setItem('item_nm',item_nm);
+            //alert(sessionStorage.getItem('item'));
+            //alert(sessionStorage.getItem('user_id'));
+            location.href="Product.html";
+        }
+
+        function loadMenu(cat) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("disp").innerHTML += this.responseText;
+            }
+            };
+            xhttp.open("GET", "getmenu.php?cat="+cat, true);
+            xhttp.send();
+        }
+
+        
+
+        function dropdown() {
+			    //alert();
+          if (sessionStorage.getItem("user_id")==-1 || sessionStorage.getItem("user_id")===null)
+            return;
+          document.getElementById("drop-down-box").style.top="120px";
+          //alert(document.getElementById("drop-down-box").style.visibility);
+          if (document.getElementById("drop-down-box").style.visibility=="visible") {
+            document.getElementById("drop-down-box").style.visibility="hidden";
+          }
+          else
+            document.getElementById("drop-down-box").style.visibility="visible";
+		    }
+    </script>
+</head>
+<body onload="setUser()">
+	<nav id="menu">
+		<ul>
+      <li id="logo">AG Restuarant</li>
+			<li><a href="#">About</a></li>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="Menu2.html" id="default">Menu</a></li>
+			<li><a href="Reservation.html">Reservation</a></li>
+      <li style="float:right;"><a href="LoginTemplate.html" onclick="dropdown()" id="user">Sign In</a></li>
+		  </ul>				  
+	</nav>
+    
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top" id="menu-nav">      
+        <!-- Links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" class="menu" href="#" id="start" onclick="loadUp('starter','start')">Starters</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" class="menu" href="#">Main Course</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" class="menu" href="#">Breads</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" class="menu" href="#">Rice and Biryani</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" class="menu" href="#">Noodles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" class="menu" href="#">Snacks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" class="menu" href="#">Accompaniments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" class="menu" href="#">Breverages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" class="menu" href="#" id="des" onclick="loadUp('dessert','des')">Desserts</a>
+          </li>
+        </ul>
+    </nav>
+    
+    <div id="drop-down-box">
+      <ul>
+        <li><a href="Cart-Page.html">My Cart</a></li>
+        <li><a href="Order.html">My Orders</a></li>
+        <li><a href="#">Hello World</a></li>
+        <li><a href="LoginTemplate.html" onclick="signout()">Sign Out</a></li>
+      </ul>
+    </div>
+
+    <div id="disp">
+
+    </div>
+
+</body>
+</html>

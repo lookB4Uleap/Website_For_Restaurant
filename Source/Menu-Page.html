@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Menu</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="catalog_des.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style type="text/css">
+        #menu-nav {
+            height: 40px;
+        }
+        
+        #menu-nav ul li a{
+            color: white;
+        }
+
+        #menu-nav ul li a:hover{
+            color: black;
+        }
+
+        .catalog {
+            visibility: hidden;
+        }
+
+        #product {
+            visibility: hidden;
+        }
+
+        #menu-disp {
+            visibility: visible;
+        }
+
+        /* Make the image fully responsive */
+      .carousel-inner img {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+      }
+
+      #item {
+        padding: 10px;
+        width: 50%;
+        height: 50%;
+      }
+
+      #buyout_opts {
+        position: absolute;
+        top: 200px;
+        left: 1200px;
+        padding: 10px;
+        border-style: dashed;
+        border-color: burlywood;
+        border-radius: 3px;
+      }
+
+      #prod-det {
+        position: absolute;
+        top: 200px;
+        left: 800px;
+      }
+
+      #suggestion {
+        position: absolute;
+        top: 500px;
+        left: 800px;
+      }
+
+      #suggestion textarea {
+        width: 500px;
+        height: 200px;
+      }
+
+      #slide {
+        left: 76px;
+        width: 80%;
+        height: 80%;
+      }
+
+      
+    </style>
+
+    <script>
+        function loadUp(opt, ele) {
+            document.getElementById(opt).style.visibility="visible";
+            document.getElementById(ele).style.color="black";
+        }
+        function popUp(id) {
+            document.getElementById(id).style.visibility="visible";
+            document.getElementById("menu-disp").style.visibility="hidden";
+        }
+    </script>
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-light" id="menu">
+        <a class="navbar-brand" href="#">
+            <img src="#" alt="Logo">
+        </a>
+		<ul class="navbar-nav">
+			<li class="nav-item">
+			  <a class="nav-link" href="#">About</a>
+			</li>
+			<li class="nav-item" id="default">
+			  <a class="nav-link" href="#">Menu</a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="#">Reservation</a>
+			</li>
+		</ul>
+    </nav>
+
+    <div id="menu-disp">
+
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top" id="menu-nav">      
+            <!-- Links -->
+            <ul class="navbar-nav">
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Starters</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Main Course</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Breads</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Rice and Biryani</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Noodles</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Snacks</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Accompaniments</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Breverages</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="des" onclick="loadUp('desserts','des')">Desserts</a>
+              </li>
+
+            </ul>
+        </nav>
+
+        <div class="catalog" id="desserts">
+            <div class="row">
+    
+                <div class="box" onclick="javascript:call()">
+                    <div class="image">
+                        <img src="Images/chocolate-mousse.jpg" alt="choco mousse">
+                    </div>
+                    <div class="name">
+                        Choco Mousse
+                    </div>
+                    <div class="price">
+                        <span>&#8377;</span>999.99
+                    </div>
+                </div>
+    
+                <div class="box" onclick="javascript:popUp('product')">
+                    <div class="image">
+                        <img src="Images/lava-cake.jpg" alt="lava cake">
+                    </div>
+                    <div class="name">
+                        Choco Lava Cake
+                    </div>
+                    <div class="price">
+                        <span>&#8377;</span>799.99  <span class="dis"><span>&#8377;</span>899.99</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div id="product">
+
+        <div id="item" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#item" data-slide-to="0" class="active"></li>
+                <li data-target="#item" data-slide-to="1"></li>
+                <li data-target="#item" data-slide-to="2"></li>
+            </ul>
+        
+            <!-- The slideshow -->
+            <div class="carousel-inner" id="slide">
+                <div class="carousel-item active">
+                    <img src="D:\IWP CSE 3002\IWP PROJECT\Images\lava-cake_2.jpg" alt="Item Image 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="D:\IWP CSE 3002\IWP PROJECT\Images\lava-cake_3.jpg" alt="Item Image 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="D:\IWP CSE 3002\IWP PROJECT\Images\lava-cake_4.jpg" alt="Item Image 3">
+                </div>
+            </div>
+        
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#item" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#item" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+          </div>
+        
+          <div id="prod-det">
+            <h2>Product Name</h2>
+            <p>Price</p>
+          </div>
+        
+          <div id="buyout_opts">
+            <label for="quantity">Quantity</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select name="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select><br>
+            <button class="btn btn-warning">Add To Cart</button>
+            <button class="btn btn-success">Buy Now</button>
+          </div>
+        
+          <div id="suggestion">
+            <h2>Suggestion Box</h2>
+            <textarea>
+            </textarea>
+          </div>
+
+    </div>
+
+    
+
+
+</body>
+</html>

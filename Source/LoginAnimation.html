@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <style>
+            body{
+                background-image: url();
+            }
+            #login {
+			    visibility: visible;
+			    position: absolute;
+			    top: 100px;
+			    left: 300px;
+			    width: 600px;
+			    height: 500px;
+			    background-color: coral;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                animation-name: ani1;
+                animation-duration: 800ms;
+                animation-play-state: paused;
+                animation-iteration-count: infinite;
+		    }
+            #form1 {
+                visibility: visible;
+            }
+            #form2 {
+                visibility: hidden;
+            }
+            #login-sd {
+                visibility: visible;
+                position: absolute;
+			    top: 100px;
+			    left: 900px;
+			    width: 350px;
+			    height: 500px;
+			    background-color: lightsalmon;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                animation-name: ani2;
+                animation-duration: 800ms;
+                animation-play-state: paused;
+                animation-iteration-count: infinite;
+            }
+            #inner1 {
+                visibility: visible;
+            }
+            #inner2 {
+                visibility: hidden;
+            }
+
+            .loginsignup-sheet {
+                padding: 80px;
+            }
+
+            #signup-sd {
+			    visibility: hidden;
+			    position: absolute;
+			    top: 100px;
+			    left: 300px;
+			    width: 350px;
+			    height: 500px;
+			    background-color: lightsalmon;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                animation-name: ani2;
+                animation-duration: 800ms;
+                animation-play-state: paused;
+                animation-iteration-count: infinite;
+                animation-direction: reverse;
+		    }
+            #signup {
+                visibility: hidden;
+                position: absolute;
+			    top: 100px;
+			    left: 650px;
+			    width: 600px;
+			    height: 500px;
+			    background-color: coral;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                animation-name: ani1;
+                animation-duration: 800ms;
+                animation-play-state: paused;
+                animation-iteration-count: infinite;
+                animation-direction: reverse;
+            }
+
+            @keyframes ani1 {
+                from {left: 300px; width: 600px; background-color: coral; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;}
+                to {left: 650px;width: 600px; background-color: coral; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-top-left-radius: 0px; border-bottom-left-radius: 0px;}
+            }
+
+            @keyframes ani2 {
+                from {left: 900px; width: 350px; background-color: lightsalmon; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-top-left-radius: 0px; border-bottom-left-radius: 0px;}
+                to {left: 300px; width: 350px; background-color: lightsalmon; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;}
+            }
+
+            @keyframes ani3 {
+                from {left: 300px; width: 350px; background-color: lightsalmon; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;}
+                to {left: 900px; width: 350px; background-color: lightsalmon; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-top-left-radius: 0px; border-bottom-left-radius: 0px;}
+            }
+
+            @keyframes ani4 {
+                from {left: 650px; width: 600px; background-color: coral; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-top-left-radius: 0px; border-bottom-left-radius: 0px;}
+                to {left: 300px; width: 600px; background-color: coral; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;}
+            }
+
+
+
+        </style>
+
+        <script type="text/javascript">
+            function loadUp(ch) {
+                document.getElementById("form1").style.visibility="hidden";
+                document.getElementById("inner1").style.visibility="hidden";
+                document.getElementById("form2").style.visibility="hidden";
+                document.getElementById("inner2").style.visibility="hidden";
+                // document.getElementById("email").type="hidden";
+                // document.getElementById("pwd").type="hidden";
+                // document.getElementById("check").type="hidden";
+                // document.getElementById("lb").type="hidden";
+                if (ch==2) { 
+                    document.getElementById("login").style.animationPlayState="running";
+                    document.getElementById("login-sd").style.animationPlayState="running";
+                    window.setTimeout(loadSU,800);
+                }
+                if (ch==1) {
+                    document.getElementById("signup").style.animationPlayState="running";
+                    document.getElementById("signup-sd").style.animationPlayState="running";
+                    window.setTimeout(loadLI,800);
+                }
+                //load();
+                //document.getElementById("login").style.animationPlayState="paused";
+                //document.getElementById("login-sd").style.animationPlayState="paused";
+                
+            }
+            function loadSU() {           
+                document.getElementById("login").style.animationPlayState="paused";
+                document.getElementById("login-sd").style.animationPlayState="paused";
+                document.getElementById("form2").style.visibility="visible";
+                document.getElementById("inner2").style.visibility="visible";
+                document.getElementById("login").style.visibility="hidden";
+                document.getElementById("login-sd").style.visibility="hidden";
+                document.getElementById("signup-sd").style.visibility="visible";
+                document.getElementById("signup").style.visibility="visible";
+            }
+            function loadLI() {
+                document.getElementById("signup").style.animationPlayState="paused";
+                document.getElementById("signup-sd").style.animationPlayState="paused";
+                document.getElementById("form1").style.visibility="visible";
+                document.getElementById("inner1").style.visibility="visible";
+                document.getElementById("signup-sd").style.visibility="hidden";
+                document.getElementById("signup").style.visibility="hidden";
+                document.getElementById("login").style.visibility="visible";
+                document.getElementById("login-sd").style.visibility="visible";
+            }
+        </script>
+
+    </head>
+    <body>
+        <header>
+            <h1 align="center">LOG IN OR SIGN UP</h1>
+        </header>
+
+        <div class="loginsignup-sheet" id="login">
+
+            <form action="#" id="form1">
+                <h4>Welcome,</h4>
+                <div class="form-group">
+                  <label for="email">Email address:</label>
+                  <input type="email" class="form-control" placeholder="Enter email" id="email">
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+                </div>
+                <div class="form-group form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" id="check"> Remember me
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary" id="lb">Submit</button>
+            
+            </form>
+
+        </div>
+
+        <div class="loginsignup-sheet" id="login-sd">
+            <div id="inner1">
+                <h3>Not Signed Up?</h3>
+                <br>
+                <button class="btn btn-success" onclick="javascript:loadUp(2)" id="lb">SIGN UP</button>
+                <h3>Now!!</h3>
+            </div>
+        </div>
+
+        <div class="loginsignup-sheet" id="signup">          
+
+            <form action="#" id="form2">
+                <h4>Welcome,</h4>
+                <div class="form-group">
+                  <label for="name">Enter Your Name:</label>
+                  <input type="text" class="form-control" placeholder="Enter name" id="name">
+                </div>                
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" placeholder="Enter email" id="email">
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            
+            </form>
+
+        </div>
+
+        <div class="loginsignup-sheet" id="signup-sd">
+            <div id="inner2">
+                <h3>Signed Up Already</h3>
+                <br>
+                <button class="btn btn-success" onclick="javascript:loadUp(1)">LOG IN</button>
+                <h3>Now!!</h3>
+            </div>
+        </div>
+    
+
+    
+    </body>
+</html>

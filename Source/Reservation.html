@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Reservations Page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        #reserve {
+            position: relative;
+        }
+
+        #header{
+            position: relative;
+            top: 20px;
+            margin: auto;
+            padding: 10px;
+            width: 60%;
+            height: 80%;
+            background-color: aquamarine;
+            font-size: 70px;
+            font-weight: 500;
+            font-family: 'Times New Roman', Times, serif;
+            margin-bottom: 20px;  
+        }  
+
+        .sub {
+            position: relative;
+            top: 20px;
+            margin: auto;
+            padding: 10px;
+            width: 60%;
+            height: 80%;
+            background-color: aquamarine;
+            font-family: sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            position: relative;
+            top: 20px;
+            margin: auto;
+            padding: 10px;
+            width: 60%;
+            height: 80%;
+            background-color: whitesmoke;
+            margin-bottom: 20px;
+        }
+
+        .tabno {
+            margin: 10px;
+            padding: 10px;
+        }
+
+    </style>
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src='common.js'></script>
+    <script>
+
+        function setUser2() {
+            if (sessionStorage.getItem("user_id")==-1 || sessionStorage.getItem("user_id")===null) {
+                return;
+            }
+            //document.getElementById("").value=sessionStorage.getItem("user_id");
+            var ele=document.getElementById("user");
+            ele.innerHTML="<i class='fas fa-user-alt'></i>";
+            ele.href='#';
+            id=sessionStorage.getItem('user_id');
+            loadEmail(id);
+        }
+        
+        function selectTab(id) {
+            //alert(id);
+            document.getElementById("tab"+id).style.backgroundColor="black";
+            document.getElementById("tab"+id).style.color="white";
+            document.getElementById("tabno").value=document.getElementById("tab"+id).value;
+        }
+
+        function addTable() {
+            //alert();
+            document.getElementById("sel_tab").style.display="none";
+            var date,hrs,d;
+            date=document.getElementById("revdate").value;
+            hrs=document.getElementById("inhrs").value;
+            d=document.getElementById("hrs").value;
+            //document.getElementById("tab").innerHTML='<button type="button" onclick="addTable()" id="sel_tab">Select Table</button><br>';
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                //alert();
+            document.getElementById("tab").innerHTML += this.responseText;
+            }
+            };
+            xhttp.open("GET", "gettable.php?revdate="+date+"&inhrs="+hrs+"&hrs="+d, true);
+            xhttp.send();
+        }
+
+    </script>
+</head>
+
+<body onload="setUser2()"> 
+    
+    <nav id="menu">
+		<ul>
+            <li id="logo">AG Restuarant</li>
+            <li><a href="#">About</a></li>
+            <li><a href="Home.html">Home</a></li>
+			<li><a href="Menu2.html">Menu</a></li>
+			<li><a href="Reservation.html" id="default">Reservation</a></li>
+            <li style="float:right;"><a href="LoginTemplate.html" onclick="dropdown()" id="user">Sign In</a></li>
+		  </ul>				  
+    </nav>
+    
+    <div id="drop-down-box">
+        <ul>
+          <li><a href="Cart-Page.html">My Cart</a></li>
+          <li><a href="Order.html">My Orders</a></li>
+          <li><a href="Suggestion.html">Give Suggestions/a></li>
+          <li><a href="LoginTemplate.html" onclick="signout()">Sign Out</a></li>
+        </ul>
+    </div>
+
+    <div id="reserve">
+        <div id="header">Reservations</div>
+        <div class="sub"><h3>CUSTOMER DETAILS</h3></div>
+        <form action="reserve.php" method="post">
+            <div class="box">
+            <table>
+            <tr>
+            <td><label for="nm">Enter Customer's Name</label></td>
+            <td><input type="text" name="nm" id="nm" required></td>
+            </tr>
+            <tr>   
+            <td><label for="phno">Enter Customers's Phone Number</label></td>
+            <td><input type="text" name="phno" id="phno" required></td>
+            </tr>
+            <tr>
+            <td><label for="email">Enter Customer's E-mail</label></td>
+            <td><input type="email" name="email" id="email"></td>
+            </tr>
+            </table>
+            </div>
+        
+            <div class="sub"><h3>SELECT TABLE<h3></div>
+
+            <div class="box">
+            <input type="number" name="id" style="visibility: hidden;"><br>
+            <label for="revdate">Enter Reservation Date</label>        
+            <input type="date" name="revdate" id="revdate" required><br>
+            <label for="intime">Enter Time (8:00 to 19:00)</label>
+            <input type="number" name="inhrs" id="inhrs" min="8" max="19"> :
+            <input type="number" name="inmin" id="inmin" min="0" max="59"><br>
+            <label for="hrs">Enter Duration (in hours)</label>
+            <select id="hrs" name="hrs" required>
+                <option value="0" disabled="disabled" selected="selected">---</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <div class="form-group"></div>
+            <label for="tabno">Select Table Number </label>
+            <div id="tab">
+                <button type="button" onclick="addTable()" id="sel_tab">Select Table</button><br>
+            </div>
+            <br>
+            <input type="text" name="tabno" id="tabno" style="display: none;    ">
+            <button type="submit" class="btn btn-success">RESERVE TABLE</button>    
+            </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

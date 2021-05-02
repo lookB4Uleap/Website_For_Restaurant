@@ -1,0 +1,66 @@
+#head {
+    background-image: url("https://images.unsplash.com/photo-1533460004989-cef01064af7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+    background-size: cover;
+    font-size: xx-large;
+    color: black;
+    height: 200px;
+    padding: 20px;
+    margin-bottom: 0px;	
+}
+#menu {
+    width : 100%;
+    padding: 10px;
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0.920);
+}
+#menu ul {
+    height: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 0px;
+    padding-bottom: 0px;   
+    overflow: hidden;
+    background-color: yellow;
+}
+#menu ul li:hover {
+    background-color: yellowgreen;
+}
+#menu li {
+    float: left;
+    padding: 10px;
+    display: inline;
+}
+
+#menu li a {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+}
+
+#menu ul #default {
+    text-decoration-line: underline;
+    font-weight: 500;
+    padding: 3px;
+}
+
+#logo {
+    background-color: rgba(0, 0, 0, 0.920);
+    color: white;
+}
+
+#logo:hover {
+    background-color: rgba(0, 0, 0, 0.920);
+}
+
+#drop-down-box {
+    position: absolute;
+    float: right;
+    top: 70px;
+    left: 1320px;
+    width: 200px;
+    height: 100px;
+    background-color: yellow;
+    visibility: hidden;
+    box-shadow: 5px 5px 5px grey;
+}

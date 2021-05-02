@@ -1,0 +1,29 @@
+.row {
+    padding: 10px;
+}
+
+.box {
+    margin-left: 20px;
+    width: 10%;
+    margin-right: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.box:hover {
+    box-shadow: 2px 2px 5px black ;
+}
+
+.image img{
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.dis {
+    color: gray;
+    text-decoration-line: line-through;
+}
